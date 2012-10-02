@@ -1,0 +1,37 @@
+| this is get token
+br
+= ("01/08/2012").to_time
+br
+br
+br
+- if !@posts.nil?
+  table border="1"
+    thead
+      tr
+        th
+          | Post ID
+        th
+          | Like's count
+        th
+          | Comment's count
+        th
+          | share's count
+        th
+          | impression
+        th
+          | link
+    tbody
+      - @posts["data"].each do |i|
+        tr
+          td
+            = i["id"]
+          td
+            = i.keys.include?("likes") ? i["likes"]["count"] : "0"
+          td
+            = i["comments"]["count"]
+          td
+            = i.keys.include?("shares") ? i["shares"]["count"] : "0"
+          td
+            = i["impression"]
+          td
+            = i["actions"][0]["link"]
